@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Disha!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Amatic+SC:wght@700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            /* --- New Background Styling --- */
+            background-color: #f7e8f5; /* Light pink aesthetic background fallback */
+            background-image: url('C:\Users\Admin\Desktop\HBD\5383d2d1c28cfdc0385899e9f9b4020d.jpg'); /* ⬅️ अपनी background image का path बदलें */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* ---------------------------- */
+        }
+
+        /* Animation Container */
+        #animation-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Sliding Text Style */
+        .hbd-text {
+            position: absolute;
+            font-size: 3.5em;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 1s ease-out;
+            white-space: nowrap;
+        }
+        
+        .hbd-text:nth-child(odd) { font-family: 'Permanent Marker', cursive; color: #42a5f5; } 
+        .hbd-text:nth-child(even) { font-family: 'Amatic SC', cursive; color: #ff69b4; } 
+        .hbd-text:nth-child(3n) { font-family: 'Dancing Script', cursive; color: #ffd700; } 
+
+        /* Bottom Genz Message */
+        #bottom-msg {
+            position: absolute;
+            bottom: 30px;
+            font-size: 2em;
+            /* Adjust color for better contrast on background */
+            color: #ffffff; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- WRAPPER/FADE CSS (Fade-in logic) --- */
+        .page-wrapper {
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0; /* ⬅️ शुरू में अदृश्य */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .page-wrapper.fade-in {
+            opacity: 1; /* ⬅️ लोड होने पर fade-in */
+        }
+        /* ---------------------------------------- */
+    </style>
+</head>
+<body>
+
+    <audio autoplay loop>
+        <source src="C:\Users\Admin\Desktop\HBD\Blue Yung Kai Instrumental Ringtone Download - MobCup.Com.Co.mp3" type="audio/mp3">
+    </audio>
+    
+    <div class="page-wrapper" id="pageWrapper"> <div id="animation-container">
+            </div>
+        
+        <div id="bottom-msg">
+            🎉 Happpyy Birthdayyy!!!kaleshiii ouratt!🩷
+        </div>
+    </div> <script>
+        // Page Load पर fade-in करें
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('pageWrapper').classList.add('fade-in');
+        });
+        
+        const container = document.getElementById('animation-container');
+        const phrases = [
+            "Happy Birthday 🎀🫶👀",
+            "HBD Disha! 🩷",
+            "A Very Special Day! 🌷✨",
+            "Happy Birthday 🎀",
+            "1 Nov Special! 👀",
+            "Have a fun day! 🥳"
+        ];
+        
+        function createAndAnimate() {
+            const text = document.createElement('div');
+            text.className = 'hbd-text';
+            text.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+            
+            const side = Math.floor(Math.random() * 4);
+            const duration = Math.random() * 3 + 3;
+            
+            let startX, startY;
+
+            if (side === 0) { startY = '-100px'; startX = `${Math.random() * 100}%`; } 
+            else if (side === 1) { startX = '100vw'; startY = `${Math.random() * 100}%`; } 
+            else if (side === 2) { startY = '100vh'; startX = `${Math.random() * 100}%`; } 
+            else { startX = '-100px'; startY = `${Math.random() * 100}%`; }
+            
+            const endX = `${Math.random() * 80 + 10}%`;
+            const endY = `${Math.random() * 80 + 10}%`;
+            
+            text.style.left = startX;
+            text.style.top = startY;
+            text.style.transitionDuration = `${duration}s`;
+            text.style.fontSize = `${Math.random() * 2 + 2.5}em`;
+            
+            container.appendChild(text);
+
+            setTimeout(() => {
+                text.style.opacity = 1;
+                text.style.left = endX;
+                text.style.top = endY;
+                text.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 10 - 5}deg)`;
+            }, 50);
+
+            setTimeout(() => {
+                text.style.opacity = 0;
+                setTimeout(() => text.remove(), 1000); 
+            }, (duration * 1000) + 3000);
+        }
+
+        setInterval(createAndAnimate, 400); 
+    </script>
+
+</body>
+</html>
